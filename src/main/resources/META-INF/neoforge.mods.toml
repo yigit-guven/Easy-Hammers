@@ -4,7 +4,7 @@ license="GPL-3.0 license"
 
 [[mods]]
 modId="easy_hammers"
-version="7.0.0"
+version="7.0.1"
 displayName="Easy Hammers"
 updateJSONURL="https://www.curseforge.com/api/v2/addon/484665/files"
 displayURL="https://github.com/yigit-guven/easy-hammers"

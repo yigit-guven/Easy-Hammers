@@ -36,6 +36,7 @@
 - **Balanced Gameplay**: Hammers are "Heavy" tools. They swing slower than pickaxes but pack a punch with higher damage and ~4x durability to compensate for the area effect.
 - **Enchantments**:
     - **Soil Breaker**: Allows the hammer to also mine dirt, sand, gravel, and grass in the 3x3 area (normally only mines stone-like blocks).
+    - **Smash**: Chance to stun enemies for a short duration on critical hits, slowing them and reducing their damage.
 - **Configurable**:
     - `gamerule easyhammersSneakingMode`: When true (default), sneak-mining mines only 1 block (precision mode).
     - `gamerule damageHammerByBlockCount`: When true (default), durability is used for *every* block broken in the 3x3 area.
