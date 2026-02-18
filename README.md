@@ -1,4 +1,4 @@
-![Easy Hammers Logo](https://github.com/yigit-guven/Easy-Hammers/blob/main/src/main/resources/logo.png?raw=true)
+![Easy Hammers Logo](/src/main/resources/logo.png)
 
 [![CurseForge](https://img.shields.io/badge/CurseForge-Available-orange?style=for-the-badge&logo=curseforge)](https://www.curseforge.com/minecraft/mc-mods/easy-hammers)
 [![Modrinth](https://img.shields.io/badge/Modrinth-Available-green?style=for-the-badge&logo=modrinth)](https://modrinth.com/mod/easy-hammers)
