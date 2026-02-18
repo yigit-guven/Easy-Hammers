@@ -14,6 +14,8 @@ import net.minecraft.world.effect.MobEffectInstance;
 @EventBusSubscriber(modid = EasyHammersMod.MODID)
 public class SmashHandler {
 
+    private static final java.util.WeakHashMap<LivingEntity, Integer> STUN_DURATIONS = new java.util.WeakHashMap<>();
+
     @SubscribeEvent
     public static void onCriticalHit(CriticalHitEvent event) {
         if (event.getEntity() == null || event.getTarget() == null) return;
@@ -28,8 +30,8 @@ public class SmashHandler {
         if (level > 0) {
             double stunChance = 0.3 + 0.2 * level;
             
-            if (event.getEntity().getRandom().nextDouble() < stunChance) {
-               event.getTarget().getPersistentData().putDouble("stunduration", 100);
+            if (event.getEntity().getRandom().nextDouble() < stunChance && event.getTarget() instanceof LivingEntity livingTarget) {
+               setStun(livingTarget, 100);
             }
         }
     }
@@ -37,20 +39,23 @@ public class SmashHandler {
     @SubscribeEvent
     public static void onEntityTick(EntityTickEvent.Post event) {
         if (event.getEntity() instanceof LivingEntity entity) {
-            if (entity.getPersistentData().contains("stunduration")) {
-                double duration = entity.getPersistentData().getDouble("stunduration");
+            int duration = STUN_DURATIONS.getOrDefault(entity, 0);
+            
+            if (duration > 0) {
+                // Apply Slowness X (high enough to stop movement)
+                entity.addEffect(new MobEffectInstance(MobEffects.SLOWNESS, 2, 10, false, false, true));
+                // Apply Weakness X (reduce damage significantly)
+                entity.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 2, 10, false, false, true));
                 
-                if (duration > 0) {
-                    // Apply Slowness X (high enough to stop movement)
-                    entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 2, 10, false, false, true));
-                    // Apply Weakness X (reduce damage significantly)
-                    entity.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 2, 10, false, false, true));
-                    
-                    entity.getPersistentData().putDouble("stunduration", duration - 1);
-                } else {
-                    entity.getPersistentData().remove("stunduration");
-                }
+                STUN_DURATIONS.put(entity, duration - 1);
+            } else {
+                STUN_DURATIONS.remove(entity);
             }
         }
+    }
+
+    // Helper to set stun
+    public static void setStun(LivingEntity entity, int duration) {
+        STUN_DURATIONS.put(entity, duration);
     }
 }

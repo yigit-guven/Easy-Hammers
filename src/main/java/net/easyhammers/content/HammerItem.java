@@ -8,7 +8,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.DiggerItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ToolMaterial;
 import net.minecraft.world.level.ClipContext;
@@ -21,21 +21,21 @@ import net.easyhammers.registry.ModGameRules;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HammerItem extends DiggerItem {
+public class HammerItem extends Item {
     public HammerItem(ToolMaterial tier, float attackDamage, float attackSpeed, Properties properties) {
-        super(tier, BlockTags.MINEABLE_WITH_PICKAXE, attackDamage, attackSpeed, properties);
+        super(properties.pickaxe(tier, attackDamage, attackSpeed));
     }
 
     @Override
     public boolean mineBlock(ItemStack stack, Level level, BlockState state, BlockPos pos, LivingEntity entity) {
-        if (!level.isClientSide && state.getDestroySpeed(level, pos) != 0.0F) {
-            stack.hurtAndBreak(1, entity, LivingEntity.getSlotForHand(entity.getUsedItemHand()));
+        if (!level.isClientSide() && state.getDestroySpeed(level, pos) != 0.0F) {
+            stack.hurtAndBreak(1, entity, net.minecraft.world.entity.EquipmentSlot.MAINHAND);
 
             if (entity instanceof ServerPlayer player) {
                 // Check Sneak Mode GameRule
                 // Start by casting level to ServerLevel since we know !isClientSide
                 ServerLevel serverLevel = (ServerLevel) level;
-                boolean sneakMode = serverLevel.getGameRules().getBoolean(net.easyhammers.registry.ModGameRules.EASY_HAMMERS_SNEAKING_MODE);
+                boolean sneakMode = serverLevel.getGameRules().get(net.easyhammers.registry.ModGameRules.EASY_HAMMERS_SNEAKING_MODE.get());
                 if (sneakMode && player.isShiftKeyDown()) {
                     return true; // Sneaking with rule enabled -> act like normal pickaxe
                 }
@@ -76,7 +76,7 @@ public class HammerItem extends DiggerItem {
 
         // Check Damage Rule
         // Cast to ServerLevel safely here too as we are called from server side context
-        boolean damageByCount = ((net.minecraft.server.level.ServerLevel)level).getGameRules().getBoolean(net.easyhammers.registry.ModGameRules.DAMAGE_HAMMER_BY_BLOCK_COUNT);
+        boolean damageByCount = ((net.minecraft.server.level.ServerLevel)level).getGameRules().get(net.easyhammers.registry.ModGameRules.DAMAGE_HAMMER_BY_BLOCK_COUNT.get());
 
         for (BlockPos neighborPos : neighbors) {
             BlockState neighborState = level.getBlockState(neighborPos);
@@ -85,7 +85,7 @@ public class HammerItem extends DiggerItem {
             if (isCorrectToolForDrops(stack, neighborState) || (hasSoilBreaker && isSoil)) {
                 boolean destroyed = player.gameMode.destroyBlock(neighborPos);
                 if (destroyed && damageByCount) {
-                    stack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(player.getUsedItemHand()));
+                    stack.hurtAndBreak(1, player, net.minecraft.world.entity.EquipmentSlot.MAINHAND);
                 }
             }
         }

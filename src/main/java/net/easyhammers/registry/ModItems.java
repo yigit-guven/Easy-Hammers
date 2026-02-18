@@ -20,7 +20,7 @@ public class ModItems {
     public static final Supplier<Item> NETHERITE_HAMMER = registerHammer("netherite_hammer", ModToolTiers.NETHERITE, 7.0F, -3.0F);
 
     private static Supplier<Item> registerHammer(String name, ToolMaterial tier, float attackDamage, float attackSpeed) {
-        return ITEMS.register(name, () -> new HammerItem(tier, attackDamage, attackSpeed, new Item.Properties().setId(net.minecraft.resources.ResourceKey.create(Registries.ITEM, net.minecraft.resources.ResourceLocation.fromNamespaceAndPath(EasyHammersMod.MODID, name)))));
+        return ITEMS.register(name, () -> new HammerItem(tier, attackDamage, attackSpeed, new Item.Properties().setId(net.minecraft.resources.ResourceKey.create(Registries.ITEM, net.minecraft.resources.Identifier.fromNamespaceAndPath(EasyHammersMod.MODID, name)))));
     }
 
     public static void register(IEventBus eventBus) {

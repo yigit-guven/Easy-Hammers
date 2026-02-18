@@ -1,0 +1,13 @@
+{
+  "itemGroup.easyhammers": "Example Mod Tab",
+  "block.easyhammers.example_block": "Example Block",
+  "item.easyhammers.example_item": "Example Item",
+
+  "easyhammers.configuration.title": "Easy Hammers Configs",
+  "easyhammers.configuration.section.easyhammers.common.toml": "Easy Hammers Configs",
+  "easyhammers.configuration.section.easyhammers.common.toml.title": "Easy Hammers Configs",
+  "easyhammers.configuration.items": "Item List",
+  "easyhammers.configuration.logDirtBlock": "Log Dirt Block",
+  "easyhammers.configuration.magicNumberIntroduction": "Magic Number Text",
+  "easyhammers.configuration.magicNumber": "Magic Number"
+}

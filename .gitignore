@@ -1,46 +1,40 @@
-# Gradle
-.gradle/
-build/
-out/
-gradle.properties
-
 # Eclipse
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders
 .classpath
 .project
-.settings/
-bin/
+.eclipse/
 
 # IntelliJ IDEA
 .idea/
-*.iml
 *.iws
+*.iml
 *.ipr
-*.krt
-*.kotlinc
+out/
 
-# VS Code
+# Visual Studio Code
 .vscode/
 
-# Mac
-.DS_Store
+# Gradle
+.gradle/
+build/
+app/build/
 
-# Logs
-logs/
+# Log Files
 *.log
-crash-reports/
-debug.log
-debug.log.gz
-latest.log
 
-# Run directories
+# Other
+Thumbs.db
+.DS_Store
 run/
 runs/
-run-client/
-run-server/
 run-data/
-run-gametest/
-
-# User specific
-authlib/
-usercache.json
-usernamecache.json
