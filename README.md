@@ -1,10 +1,29 @@
-# Easy Hammers
+![Easy Hammers Logo](https://github.com/yigit-guven/Easy-Hammers/blob/main/src/main/resources/logo.png?raw=true)
 
-![Easy Hammers Logo](src/main/resources/logo.png)
+[![CurseForge](https://img.shields.io/badge/CurseForge-Available-orange?style=for-the-badge&logo=curseforge)](https://www.curseforge.com/minecraft/mc-mods/easy-hammers)
+[![Modrinth](https://img.shields.io/badge/Modrinth-Available-green?style=for-the-badge&logo=modrinth)](https://modrinth.com/mod/easy-hammers)
+[![Discord](https://img.shields.io/badge/Discord-Join%20Us-7289DA?style=for-the-badge&logo=discord)](https://discord.gg/gNajXYku5z)
+[![License](https://img.shields.io/badge/License-GPL%203.0-blue?style=for-the-badge)](LICENSE)
 
 **Easy Hammers** enhances your Minecraft mining experience by adding a collection of powerful hammers that mine a **3x3 area** at once. Say goodbye to tedious strip mining and hello to efficient excavation!
 
-## Features
+---
+
+## 🔗 Links
+
+| Platform | Link |
+| :--- | :--- |
+| **📥 CurseForge** | [Download Here](https://www.curseforge.com/minecraft/mc-mods/easy-hammers) |
+| **📥 Modrinth** | [Download Here](https://modrinth.com/mod/easy-hammers) |
+| **💬 Discord** | [Join Community](https://discord.gg/gNajXYku5z) |
+| **🐛 Issues** | [Report Bugs](https://github.com/yigit-guven/Easy-Hammers/issues/) |
+| **📚 Wiki** | [Documentation](https://github.com/yigit-guven/Easy-Hammers/wiki) |
+| **💻 Source** | [GitHub Repo](https://github.com/yigit-guven/Easy-Hammers) |
+| **👤 Author** | [Yiğit Güven](https://github.com/yigit-guven) \| [Website](https://yigitguven.net/) |
+
+---
+
+## ✨ Features
 
 - **3x3 Mining**: Break 9 blocks with a single swing! Perfect for strip mining and large-scale excavation.
 - **Vanilla-Friendly Tiers**: Progression mirrors vanilla tools, from Wooden to Netherite.
@@ -18,47 +37,46 @@
 - **Enchantments**:
     - **Soil Breaker**: Allows the hammer to also mine dirt, sand, gravel, and grass in the 3x3 area (normally only mines stone-like blocks).
 - **Configurable**:
-    - `gamerule easyhammersSneakingMode`: When true (default), sneak-mining miners only 1 block (precision mode).
+    - `gamerule easyhammersSneakingMode`: When true (default), sneak-mining mines only 1 block (precision mode).
     - `gamerule damageHammerByBlockCount`: When true (default), durability is used for *every* block broken in the 3x3 area.
 
-## Installation
+## 🛠️ Crafting
 
-1.  Download and install [NeoForge](https://neoforged.net/) for Minecraft 1.21.4.
-2.  Clone the repository.
-3.  Copy `gradle.properties.example` to `gradle.properties`.
-4.  Run `./gradlew build` to setup the workspace.
+Craft a hammer using the standard pattern (similar to a pickaxe but "heavier"):
 
-## Building from Source
+**Recipe**:
+```
+M M M
+M S M
+  S
+```
+*(M = Material, S = Stick)*
+
+## 📦 Installation
+
+1.  Download and install Modloader for Minecraft.
+2.  Download the **Easy Hammers** mod jar from [CurseForge](https://www.curseforge.com/minecraft/mc-mods/easy-hammers) or [Modrinth](https://modrinth.com/mod/easy-hammers).
+3.  Place the jar file in your `.minecraft/mods` folder.
+4.  Launch Minecraft and enjoy!
+
+## 👨‍💻 Building from Source
 
 If you want to contribute or build the jar yourself:
 
-1.  Clone the repo.
+1.  Clone the repository.
+    ```bash
+    git clone https://github.com/yigit-guven/Easy-Hammers.git
+    ```
 2.  Copy `gradle.properties.example` to `gradle.properties`.
 3.  (Optional) If your system Java is not Java 21, set `org.gradle.java.home` in `gradle.properties`.
 4.  Run `./gradlew build`.
 5.  The jar will be in `build/libs`.
 
-## Usage
-
-Craft a hammer using the standard pattern (similar to a pickaxe but "heavier"):
-
-s = stick, m = material
-```
-m m m
-m s m
-  s
-```
-*(Check JEI/REI for exact recipes if needed)*
-
-- **Right Click**: Normal interaction.
-- **Left Click**: Mines a 3x3 area around the target block.
-- **Shift + Left Click**: Mines a single block (if `easyhammersSneakingMode` is enabled).
-
-## License
+## 📜 License
 
 This project is licensed under the **GPL-3.0 License**. See the `LICENSE` file for details.
 
-## Credits
+## ❤️ Credits
 
-- **Author**: Yiğit Güven
+- **Author**: [Yiğit Güven](https://yigitguven.net/)
 - **Special Thanks**: The Minecraft community for inspiration and support.
