@@ -1,0 +1,15 @@
+{
+  "item_group.easy_hammers.easy_hammers_tab": "Easy Hammers",
+  "gamerule.damageHammerByBlockCount": "Damage Hammer By Block Count",
+  "enchantment.easy_hammers.soil_breaker": "Soil Breaker",
+  "enchantment.easy_hammers.smash": "Smash",
+  "item.easy_hammers.golden_hammer": "Golden Hammer",
+  "gamerule.damageHammerByBlockCount.description": "If true, hammers will lose duranility for total number of broken blocks.",
+  "gamerule.easyhammersSneakingMode": "Hammer Sneak Mode",
+  "item.easy_hammers.diamond_hammer": "Diamond Hammer",
+  "item.easy_hammers.wooden_hammer": "Wooden Hammer",
+  "item.easy_hammers.netherite_hammer": "Netherite Hammer",
+  "item.easy_hammers.iron_hammer": "Iron Hammer",
+  "gamerule.easyhammersSneakingMode.description": "When true, hammers will break only one block like a pickaxe while the player is sneaking.",
+  "item.easy_hammers.stone_hammer": "Stone Hammer"
+}

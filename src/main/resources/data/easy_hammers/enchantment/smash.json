@@ -1,0 +1,28 @@
+{
+  "description": {
+    "translate": "enchantment.easy_hammers.smash"
+  },
+  "supported_items": [
+    "easy_hammers:wooden_hammer",
+    "easy_hammers:stone_hammer",
+    "easy_hammers:golden_hammer",
+    "easy_hammers:iron_hammer",
+    "easy_hammers:diamond_hammer",
+    "easy_hammers:netherite_hammer"
+  ],
+  "weight": 6,
+  "max_level": 3,
+  "min_cost": {
+    "base": 1,
+    "per_level_above_first": 10
+  },
+  "max_cost": {
+    "base": 6,
+    "per_level_above_first": 10
+  },
+  "anvil_cost": 12,
+  "slots": [
+    "mainhand"
+  ],
+  "exclusive_set": "knockback"
+}

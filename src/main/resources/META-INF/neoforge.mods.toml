@@ -1,0 +1,29 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="GPL-3.0 license"
+
+[[mods]]
+modId="easy_hammers"
+version="7.0.0"
+displayName="Easy Hammers"
+updateJSONURL="https://www.curseforge.com/api/v2/addon/484665/files"
+displayURL="https://github.com/yigit-guven/easy-hammers"
+logoFile="logo.png"
+credits="Special thanks to the Minecraft community for inspiration and support."
+authors="Yiğit Güven"
+description="Easy Hammers adds powerful 3x3 hammers to Minecraft, making mining large areas faster and more efficient."
+displayTest="IGNORE_SERVER_VERSION"
+
+[[dependencies.easy_hammers]]
+    modId="neoforge"
+    type="required"
+    versionRange="[21.4.101-beta,)"
+    ordering="AFTER"
+    side="BOTH"
+
+[[dependencies.easy_hammers]]
+    modId="minecraft"
+    type="required"
+    versionRange="[1.21.4]"
+    ordering="AFTER"
+    side="BOTH"

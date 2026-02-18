@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "easy_hammers:netherite_hammer",
+    "easy_hammers:diamond_hammer",
+    "easy_hammers:iron_hammer",
+    "easy_hammers:golden_hammer",
+    "easy_hammers:stone_hammer",
+    "easy_hammers:wooden_hammer"
+  ]
+}

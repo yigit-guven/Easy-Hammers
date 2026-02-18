@@ -1,0 +1,58 @@
+plugins {
+    id 'eclipse'
+    id 'idea'
+    id 'net.neoforged.moddev' version '2.0.78'
+}
+
+version = '1.0'
+group = 'net.easyhammers'
+
+base {
+    archivesName = 'easy_hammers'
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+
+neoForge {
+    version = '21.4.101-beta'
+
+    mods {
+        easy_hammers {
+            sourceSet sourceSets.main
+        }
+    }
+
+    runs {
+        configureEach {
+            systemProperty 'forge.logging.markers', 'REGISTRIES'
+            logLevel = org.slf4j.event.Level.DEBUG
+        }
+
+        client {
+            client()
+            systemProperty 'forge.enabledGameTestNamespaces', 'easy_hammers'
+        }
+
+        server {
+            server()
+            programArgument '--nogui'
+            systemProperty 'forge.enabledGameTestNamespaces', 'easy_hammers'
+        }
+
+        gameTestServer {
+            type = "gameTestServer"
+            systemProperty 'forge.enabledGameTestNamespaces', 'easy_hammers'
+        }
+
+        data {
+            data()
+            programArguments.addAll '--mod', 'easy_hammers', '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
+        }
+    }
+}
+
+sourceSets.main.resources { srcDir 'src/generated/resources' }
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}

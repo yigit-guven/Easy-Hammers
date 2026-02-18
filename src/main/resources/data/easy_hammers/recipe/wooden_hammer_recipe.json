@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "hammer",
+  "category": "equipment",
+  "pattern": [
+    "aaa",
+    "aba",
+    " b "
+  ],
+  "key": {
+    "a": "#minecraft:planks",
+    "b": "minecraft:stick"
+  },
+  "result": {
+    "id": "easy_hammers:wooden_hammer",
+    "count": 1
+  }
+}
