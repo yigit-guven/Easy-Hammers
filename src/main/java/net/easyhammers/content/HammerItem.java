@@ -8,22 +8,22 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.ToolMaterial;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.PickaxeItem;
+import net.minecraft.world.item.DiggerItem;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
-import net.easyhammers.registry.ModGameRules;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class HammerItem extends Item {
-    public HammerItem(ToolMaterial tier, float attackDamage, float attackSpeed, Properties properties) {
-        super(properties.pickaxe(tier, attackDamage, attackSpeed));
+public class HammerItem extends PickaxeItem {
+    public HammerItem(Tier tier, float attackDamage, float attackSpeed, Properties properties) {
+        super(tier, properties.attributes(DiggerItem.createAttributes(tier, attackDamage, attackSpeed)));
     }
 
     @Override
@@ -35,7 +35,7 @@ public class HammerItem extends Item {
                 // Check Sneak Mode GameRule
                 // Start by casting level to ServerLevel since we know !isClientSide
                 ServerLevel serverLevel = (ServerLevel) level;
-                boolean sneakMode = serverLevel.getGameRules().get(net.easyhammers.registry.ModGameRules.EASY_HAMMERS_SNEAKING_MODE.get());
+                boolean sneakMode = serverLevel.getGameRules().getBoolean(net.easyhammers.registry.ModGameRules.EASY_HAMMERS_SNEAKING_MODE);
                 if (sneakMode && player.isShiftKeyDown()) {
                     return true; // Sneaking with rule enabled -> act like normal pickaxe
                 }
@@ -76,7 +76,7 @@ public class HammerItem extends Item {
 
         // Check Damage Rule
         // Cast to ServerLevel safely here too as we are called from server side context
-        boolean damageByCount = ((net.minecraft.server.level.ServerLevel)level).getGameRules().get(net.easyhammers.registry.ModGameRules.DAMAGE_HAMMER_BY_BLOCK_COUNT.get());
+        boolean damageByCount = ((net.minecraft.server.level.ServerLevel)level).getGameRules().getBoolean(net.easyhammers.registry.ModGameRules.DAMAGE_HAMMER_BY_BLOCK_COUNT);
 
         for (BlockPos neighborPos : neighbors) {
             BlockState neighborState = level.getBlockState(neighborPos);

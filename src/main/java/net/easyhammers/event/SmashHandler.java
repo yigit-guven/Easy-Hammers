@@ -43,7 +43,7 @@ public class SmashHandler {
             
             if (duration > 0) {
                 // Apply Slowness X (high enough to stop movement)
-                entity.addEffect(new MobEffectInstance(MobEffects.SLOWNESS, 2, 10, false, false, true));
+                entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 2, 10, false, false, true));
                 // Apply Weakness X (reduce damage significantly)
                 entity.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 2, 10, false, false, true));
                 

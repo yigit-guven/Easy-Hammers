@@ -4,7 +4,7 @@ import net.easyhammers.EasyHammersMod;
 import net.easyhammers.content.HammerItem;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ToolMaterial;
+// import net.minecraft.world.item.ToolMaterial; // Removed in 1.21.1
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import java.util.function.Supplier;
@@ -19,8 +19,8 @@ public class ModItems {
     public static final Supplier<Item> DIAMOND_HAMMER = registerHammer("diamond_hammer", ModToolTiers.DIAMOND, 6.5F, -3.1F);
     public static final Supplier<Item> NETHERITE_HAMMER = registerHammer("netherite_hammer", ModToolTiers.NETHERITE, 7.0F, -3.0F);
 
-    private static Supplier<Item> registerHammer(String name, ToolMaterial tier, float attackDamage, float attackSpeed) {
-        return ITEMS.register(name, () -> new HammerItem(tier, attackDamage, attackSpeed, new Item.Properties().setId(net.minecraft.resources.ResourceKey.create(Registries.ITEM, net.minecraft.resources.Identifier.fromNamespaceAndPath(EasyHammersMod.MODID, name)))));
+    private static Supplier<Item> registerHammer(String name, net.minecraft.world.item.Tier tier, float attackDamage, float attackSpeed) {
+        return ITEMS.register(name, () -> new HammerItem(tier, attackDamage, attackSpeed, new Item.Properties()));
     }
 
     public static void register(IEventBus eventBus) {

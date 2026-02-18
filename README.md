@@ -3,13 +3,13 @@
 [![CurseForge](https://img.shields.io/badge/CurseForge-Available-orange?style=for-the-badge&logo=curseforge)](https://www.curseforge.com/minecraft/mc-mods/easy-hammers)
 [![Modrinth](https://img.shields.io/badge/Modrinth-Available-green?style=for-the-badge&logo=modrinth)](https://modrinth.com/mod/easy-hammers)
 [![Discord](https://img.shields.io/badge/Discord-Join%20Us-7289DA?style=for-the-badge&logo=discord)](https://discord.gg/gNajXYku5z)
+[![NeoForge 1.21.1](https://img.shields.io/badge/NeoForge-1.21.1-31322C?style=for-the-badge&logo=neoforge)](https://neoforged.net/)
 [![License](https://img.shields.io/badge/License-GPL%203.0-blue?style=for-the-badge)](LICENSE)
-[![NeoForge 1.21.11](https://img.shields.io/badge/NeoForge-1.21.11-31322C?style=for-the-badge&logo=neoforge)](https://neoforged.net/)
 
 **Easy Hammers** enhances your Minecraft mining experience by adding a collection of powerful hammers that mine a **3x3 area** at once. Say goodbye to tedious strip mining and hello to efficient excavation!
 
 > [!NOTE]
-> **Version 7.0.1+** is now available for **Minecraft 1.21.11** on NeoForge!
+> **Version 7.0.1+** is now available for **Minecraft 1.21.1** on NeoForge!
 
 ---
 

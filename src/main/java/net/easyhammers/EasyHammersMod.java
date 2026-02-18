@@ -13,6 +13,6 @@ public class EasyHammersMod {
     public EasyHammersMod(IEventBus modEventBus) {
         ModItems.register(modEventBus);
         ModTabs.register(modEventBus);
-        ModGameRules.register(modEventBus);
+        ModGameRules.register();
     }
 }
