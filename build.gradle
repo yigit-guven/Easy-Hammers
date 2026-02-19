@@ -1,57 +1,96 @@
 plugins {
     id 'eclipse'
     id 'idea'
-    id 'net.neoforged.moddev' version '2.0.78'
+    id 'net.minecraftforge.gradle' version '[6.0,6.2)'
 }
 
-version = '7.0.1'
-group = 'net.easyhammers'
+group = mod_group_id
+version = mod_version
 
 base {
-    archivesName = 'easy_hammers'
+    archivesName = mod_id
 }
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+java {
+    toolchain.languageVersion = JavaLanguageVersion.of(17)
+}
 
-neoForge {
-    version = '21.4.101-beta'
-
-    mods {
-        easy_hammers {
-            sourceSet sourceSets.main
-        }
-    }
+minecraft {
+    mappings channel: mapping_channel, version: mapping_version
+    
+    copyIdeResources = true
 
     runs {
         configureEach {
-            systemProperty 'forge.logging.markers', 'REGISTRIES'
-            logLevel = org.slf4j.event.Level.DEBUG
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+            
+            mods {
+                "${mod_id}" {
+                    source sourceSets.main
+                }
+            }
         }
 
         client {
-            client()
-            systemProperty 'forge.enabledGameTestNamespaces', 'easy_hammers'
+            property 'forge.enabledGameTestNamespaces', mod_id
         }
 
         server {
-            server()
-            programArgument '--nogui'
-            systemProperty 'forge.enabledGameTestNamespaces', 'easy_hammers'
+            property 'forge.enabledGameTestNamespaces', mod_id
+            args '--nogui'
         }
 
         gameTestServer {
-            type = "gameTestServer"
-            systemProperty 'forge.enabledGameTestNamespaces', 'easy_hammers'
+            property 'forge.enabledGameTestNamespaces', mod_id
         }
 
         data {
-            data()
-            programArguments.addAll '--mod', 'easy_hammers', '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
+            workingDirectory project.file('run-data')
+            args '--mod', mod_id, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
         }
     }
 }
 
 sourceSets.main.resources { srcDir 'src/generated/resources' }
+
+repositories {
+    // Add repositories if needed
+}
+
+dependencies {
+    minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+}
+
+tasks.named('processResources', ProcessResources).configure {
+    var replaceProperties = [
+            minecraft_version: minecraft_version, minecraft_version_range: minecraft_version_range,
+            forge_version: forge_version, forge_version_range: forge_version_range,
+            loader_version_range: loader_version_range,
+            mod_id: mod_id, mod_name: mod_name, mod_license: mod_license, mod_version: mod_version,
+            mod_authors: mod_authors, mod_description: mod_description,
+    ]
+    inputs.properties replaceProperties
+
+    filesMatching(['META-INF/mods.toml', 'pack.mcmeta']) {
+        expand replaceProperties + [project: project]
+    }
+}
+
+tasks.named('jar', Jar).configure {
+    manifest {
+        attributes([
+                "Specification-Title"     : mod_id,
+                "Specification-Vendor"    : mod_authors,
+                "Specification-Version"   : "1", // We are version 1 of ourselves
+                "Implementation-Title"    : project.name,
+                "Implementation-Version"  : project.jar.archiveVersion,
+                "Implementation-Vendor"   : mod_authors,
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+        ])
+    }
+}
 
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'

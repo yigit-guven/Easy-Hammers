@@ -1,17 +1,17 @@
 package net.easyhammers.event;
 
 import net.easyhammers.EasyHammersMod;
-import net.easyhammers.registry.ModEnchantmentKeys;
+import net.easyhammers.registry.ModEnchantments;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.event.entity.player.CriticalHitEvent;
-import net.neoforged.neoforge.event.tick.EntityTickEvent;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.player.CriticalHitEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
-@EventBusSubscriber(modid = EasyHammersMod.MODID)
+@Mod.EventBusSubscriber(modid = EasyHammersMod.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class SmashHandler {
 
     @SubscribeEvent
@@ -19,11 +19,7 @@ public class SmashHandler {
         if (event.getEntity() == null || event.getTarget() == null) return;
         
         ItemStack mainHand = event.getEntity().getMainHandItem();
-        var registryAccess = event.getEntity().registryAccess();
-        
-        // Check for Smash enchantment
-        // In 1.21, we use EnchantmentHelper or getEnchantmentLevel with registry lookup
-        int level = mainHand.getEnchantmentLevel(registryAccess.lookupOrThrow(net.minecraft.core.registries.Registries.ENCHANTMENT).getOrThrow(ModEnchantmentKeys.SMASH));
+        int level = mainHand.getEnchantmentLevel(ModEnchantments.SMASH.get());
         
         if (level > 0) {
             double stunChance = 0.3 + 0.2 * level;
@@ -35,9 +31,16 @@ public class SmashHandler {
     }
 
     @SubscribeEvent
-    public static void onEntityTick(EntityTickEvent.Post event) {
-        if (event.getEntity() instanceof LivingEntity entity) {
-            if (entity.getPersistentData().contains("stunduration")) {
+    public static void onEntityTick(TickEvent.PlayerTickEvent event) {
+        // PlayerTickEvent is for players. We want any LivingEntity that is stunned.
+        // Actually, we stun the TARGET, which might be a mob.
+        // So we need LivingTickEvent or similar.
+    }
+    
+    @SubscribeEvent
+    public static void onLivingTick(net.minecraftforge.event.entity.living.LivingEvent.LivingTickEvent event) {
+        LivingEntity entity = event.getEntity();
+        if (entity.getPersistentData().contains("stunduration")) {
                 double duration = entity.getPersistentData().getDouble("stunduration");
                 
                 if (duration > 0) {
@@ -50,7 +53,6 @@ public class SmashHandler {
                 } else {
                     entity.getPersistentData().remove("stunduration");
                 }
-            }
         }
     }
 }

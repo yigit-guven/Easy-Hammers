@@ -2,24 +2,28 @@ package net.easyhammers;
 
 import net.easyhammers.registry.ModItems;
 import net.easyhammers.registry.ModTabs;
+import net.easyhammers.registry.ModEnchantments;
 import net.easyhammers.registry.ModGameRules;
-import net.neoforged.bus.api.IEventBus;
-import net.neoforged.fml.common.Mod;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 @Mod(EasyHammersMod.MODID)
 public class EasyHammersMod {
     public static final String MODID = "easy_hammers";
 
-    public EasyHammersMod(IEventBus modEventBus) {
+    public EasyHammersMod() {
+        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+
         ModItems.register(modEventBus);
         ModTabs.register(modEventBus);
+        ModEnchantments.register(modEventBus);
+        
+        // GameRules in 1.20.1 are simpler usually, let's keep the static register call for now
+        ModGameRules.register(); 
 
-        // GameRules are registered during class loading/initialization of GameRules class normally, 
-        // but we need to ensure our class is loaded.
-        // NeoForge might have a dedicated event or mechanism, but vanilla GameRules.register is static.
-        // We can call it here or in FMLCommonSetupEvent. 
-        // Actually, vanilla registers them in static block of GameRules.
-        // To be safe and ensure they exist, we call the static register method.
-        ModGameRules.register();
+        // Register ourselves for server and other game events we are interested in
+        MinecraftForge.EVENT_BUS.register(this);
     }
 }
