@@ -22,7 +22,7 @@ public class ModItems {
     public static final RegistryObject<Item> NETHERITE_HAMMER = registerHammer("netherite_hammer", ModToolTiers.NETHERITE, 7.0F, -3.0F);
 
     private static RegistryObject<Item> registerHammer(String name, Tier tier, float attackDamage, float attackSpeed) {
-        return ITEMS.register(name, () -> new HammerItem(tier, attackDamage, attackSpeed, new Item.Properties()));
+        return ITEMS.register(name, () -> new HammerItem(tier, attackDamage, attackSpeed, new Item.Properties().tab(ModTabs.EASY_HAMMERS_TAB)));
     }
 
     public static void register(IEventBus eventBus) {

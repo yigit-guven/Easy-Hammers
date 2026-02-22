@@ -3,11 +3,10 @@ package net.easyhammers.registry;
 import net.minecraft.world.level.GameRules;
 
 public class ModGameRules {
-    public static GameRules.Key<GameRules.BooleanValue> DAMAGE_HAMMER_BY_BLOCK_COUNT;
-    public static GameRules.Key<GameRules.BooleanValue> EASY_HAMMERS_SNEAKING_MODE;
+    public static boolean DAMAGE_HAMMER_BY_BLOCK_COUNT = true;
+    public static boolean EASY_HAMMERS_SNEAKING_MODE = true;
 
     public static void register() {
-        DAMAGE_HAMMER_BY_BLOCK_COUNT = GameRules.register("damageHammerByBlockCount", GameRules.Category.PLAYER, GameRules.BooleanValue.create(true));
-        EASY_HAMMERS_SNEAKING_MODE = GameRules.register("easyhammersSneakingMode", GameRules.Category.PLAYER, GameRules.BooleanValue.create(true));
+        // GameRules registration requires AT in 1.19.2, using static fields as workaround for downgrade config.
     }
 }

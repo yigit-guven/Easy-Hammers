@@ -31,14 +31,14 @@ public class HammerItem extends DiggerItem {
     @Override
     public boolean mineBlock(ItemStack stack, Level level, BlockState state, BlockPos pos, LivingEntity entity) {
         if (!level.isClientSide && state.getDestroySpeed(level, pos) != 0.0F) {
-            stack.hurtAndBreak(1, entity, (e) -> e.broadcastBreakEvent(e.getUsedItemHand() == net.minecraft.world.InteractionHand.MAIN_HAND ? net.minecraft.world.entity.EquipmentSlot.MAINHAND : net.minecraft.world.entity.EquipmentSlot.OFFHAND));
+            stack.hurtAndBreak(1, entity, (e) -> e.broadcastBreakEvent(net.minecraft.world.entity.EquipmentSlot.MAINHAND));
             // In 1.20.1 hurtAndBreak takes a Consumer<T> onBreak, not slot directly?
             // Actually usually hurtAndBreak(int amount, LivingEntity entity, Consumer<LivingEntity> onBreak)
 
             if (entity instanceof ServerPlayer player) {
                 // Check Sneak Mode GameRule
                 ServerLevel serverLevel = (ServerLevel) level;
-                boolean sneakMode = serverLevel.getGameRules().getBoolean(ModGameRules.EASY_HAMMERS_SNEAKING_MODE);
+                boolean sneakMode = ModGameRules.EASY_HAMMERS_SNEAKING_MODE;
                 if (sneakMode && player.isShiftKeyDown()) {
                     return true;
                 }
@@ -74,7 +74,7 @@ public class HammerItem extends DiggerItem {
         // Use 4.5 as fallback for now or try to access standard reach.
         double d0 = 4.5d; 
         try {
-             d0 = player.getAttributeValue(net.minecraftforge.common.ForgeMod.BLOCK_REACH.get());
+             d0 = player.getAttributeValue(net.minecraftforge.common.ForgeMod.REACH_DISTANCE.get());
         } catch (Exception e) {}
         
         var vec31 = vec3.add((double)f6 * d0, (double)f5 * d0, (double)f7 * d0);
@@ -88,7 +88,7 @@ public class HammerItem extends DiggerItem {
         int soilBreakerLevel = stack.getEnchantmentLevel(ModEnchantments.SOIL_BREAKER.get());
         boolean hasSoilBreaker = soilBreakerLevel > 0;
 
-        boolean damageByCount = ((net.minecraft.server.level.ServerLevel)level).getGameRules().getBoolean(ModGameRules.DAMAGE_HAMMER_BY_BLOCK_COUNT);
+        boolean damageByCount = ModGameRules.DAMAGE_HAMMER_BY_BLOCK_COUNT;
 
         for (BlockPos neighborPos : neighbors) {
             BlockState neighborState = level.getBlockState(neighborPos);
@@ -98,7 +98,7 @@ public class HammerItem extends DiggerItem {
                 // destroyBlock? 
                 boolean destroyed = player.gameMode.destroyBlock(neighborPos);
                 if (destroyed && damageByCount) {
-                    stack.hurtAndBreak(1, player, (e) -> e.broadcastBreakEvent(player.getUsedItemHand() == net.minecraft.world.InteractionHand.MAIN_HAND ? net.minecraft.world.entity.EquipmentSlot.MAINHAND : net.minecraft.world.entity.EquipmentSlot.OFFHAND));
+                    stack.hurtAndBreak(1, player, (e) -> e.broadcastBreakEvent(net.minecraft.world.entity.EquipmentSlot.MAINHAND));
                 }
             }
         }

@@ -17,7 +17,6 @@ public class EasyHammersMod {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         ModItems.register(modEventBus);
-        ModTabs.register(modEventBus);
         ModEnchantments.register(modEventBus);
         
         // GameRules in 1.20.1 are simpler usually, let's keep the static register call for now
