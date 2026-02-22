@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "hammer",
+  "category": "equipment",
+  "pattern": [
+    "aaa",
+    "aba",
+    " b "
+  ],
+  "key": {
+    "a": "minecraft:iron_ingot",
+    "b": "minecraft:stick"
+  },
+  "result": {
+    "id": "easy_hammers:iron_hammer",
+    "count": 1
+  }
+}

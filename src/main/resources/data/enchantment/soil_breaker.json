@@ -1,0 +1,28 @@
+{
+  "description": {
+    "translate": "enchantment.easy_hammers.soil_breaker"
+  },
+  "supported_items": [
+    "easy_hammers:wooden_hammer",
+    "easy_hammers:stone_hammer",
+    "easy_hammers:golden_hammer",
+    "easy_hammers:iron_hammer",
+    "easy_hammers:diamond_hammer",
+    "easy_hammers:netherite_hammer"
+  ],
+  "weight": 2,
+  "max_level": 1,
+  "min_cost": {
+    "base": 1,
+    "per_level_above_first": 10
+  },
+  "max_cost": {
+    "base": 6,
+    "per_level_above_first": 10
+  },
+  "anvil_cost": 4,
+  "slots": [
+    "mainhand"
+  ],
+  "exclusive_set": "silk_touch"
+}

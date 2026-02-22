@@ -1,31 +1,33 @@
 package net.easyhammers.registry;
 
-import net.easyhammers.EasyHammersMod;
+import net.easyhammers.EasyHammers;
 import net.easyhammers.content.HammerItem;
+import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Tier;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
-
-import java.util.function.Supplier;
 
 public class ModItems {
-    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, EasyHammersMod.MODID);
 
-    public static final RegistryObject<Item> WOODEN_HAMMER = registerHammer("wooden_hammer", ModToolTiers.WOODEN, 5.5F, -3.2F);
-    public static final RegistryObject<Item> STONE_HAMMER = registerHammer("stone_hammer", ModToolTiers.STONE, 5.5F, -3.2F);
-    public static final RegistryObject<Item> IRON_HAMMER = registerHammer("iron_hammer", ModToolTiers.IRON, 6.0F, -3.1F);
-    public static final RegistryObject<Item> GOLDEN_HAMMER = registerHammer("golden_hammer", ModToolTiers.GOLD, 5.5F, -3.0F);
-    public static final RegistryObject<Item> DIAMOND_HAMMER = registerHammer("diamond_hammer", ModToolTiers.DIAMOND, 6.5F, -3.1F);
-    public static final RegistryObject<Item> NETHERITE_HAMMER = registerHammer("netherite_hammer", ModToolTiers.NETHERITE, 7.0F, -3.0F);
+    public static final Item WOODEN_HAMMER = registerItem("wooden_hammer", 
+        new HammerItem(ModToolMaterials.WOODEN, 5.5F, -3.2F, new FabricItemSettings()));
+    public static final Item STONE_HAMMER = registerItem("stone_hammer", 
+        new HammerItem(ModToolMaterials.STONE, 5.5F, -3.2F, new FabricItemSettings()));
+    public static final Item IRON_HAMMER = registerItem("iron_hammer", 
+        new HammerItem(ModToolMaterials.IRON, 6.0F, -3.1F, new FabricItemSettings()));
+    public static final Item GOLDEN_HAMMER = registerItem("golden_hammer", 
+        new HammerItem(ModToolMaterials.GOLD, 5.5F, -3.0F, new FabricItemSettings()));
+    public static final Item DIAMOND_HAMMER = registerItem("diamond_hammer", 
+        new HammerItem(ModToolMaterials.DIAMOND, 6.5F, -3.1F, new FabricItemSettings()));
+    public static final Item NETHERITE_HAMMER = registerItem("netherite_hammer", 
+        new HammerItem(ModToolMaterials.NETHERITE, 7.0F, -3.0F, new FabricItemSettings()));
 
-    private static RegistryObject<Item> registerHammer(String name, Tier tier, float attackDamage, float attackSpeed) {
-        return ITEMS.register(name, () -> new HammerItem(tier, attackDamage, attackSpeed, new Item.Properties()));
+    private static Item registerItem(String name, Item item) {
+        return Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(EasyHammers.MODID, name), item);
     }
 
-    public static void register(IEventBus eventBus) {
-        ITEMS.register(eventBus);
+    public static void registerItems() {
+        EasyHammers.LOGGER.info("Registering Mod Items for {}", EasyHammers.MODID);
     }
 }

@@ -1,43 +1,43 @@
 package net.easyhammers.registry;
 
-import net.easyhammers.EasyHammersMod;
+import net.easyhammers.EasyHammers;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
 
 public class ModEnchantments {
-    public static final DeferredRegister<Enchantment> ENCHANTMENTS = DeferredRegister.create(ForgeRegistries.ENCHANTMENTS, EasyHammersMod.MODID);
 
-    // In 1.20.1, we define Enchantment classes or anonymous classes
-    public static final RegistryObject<Enchantment> SMASH = ENCHANTMENTS.register("smash", 
-        () -> new SmashEnchantment(Enchantment.Rarity.RARE, EnchantmentCategory.WEAPON, EquipmentSlot.MAINHAND));
+    public static final Enchantment SMASH = registerEnchantment("smash", 
+        new SmashEnchantment(Enchantment.Rarity.RARE, EnchantmentCategory.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
 
-    public static final RegistryObject<Enchantment> SOIL_BREAKER = ENCHANTMENTS.register("soil_breaker",
-        () -> new SoilBreakerEnchantment(Enchantment.Rarity.COMMON, EnchantmentCategory.DIGGER, EquipmentSlot.MAINHAND));
+    public static final Enchantment SOIL_BREAKER = registerEnchantment("soil_breaker", 
+        new SoilBreakerEnchantment(Enchantment.Rarity.COMMON, EnchantmentCategory.DIGGER, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
 
-    public static void register(IEventBus eventBus) {
-        ENCHANTMENTS.register(eventBus);
+    private static Enchantment registerEnchantment(String name, Enchantment enchantment) {
+        return Registry.register(BuiltInRegistries.ENCHANTMENT, new ResourceLocation(EasyHammers.MODID, name), enchantment);
     }
-    
-    // Inner classes for simple enchantments if they don't exist elsewhere
+
+    public static void registerEnchantments() {
+        EasyHammers.LOGGER.info("Registering Mod Enchantments for {}", EasyHammers.MODID);
+    }
+
     public static class SmashEnchantment extends Enchantment {
-        protected SmashEnchantment(Rarity rarity, EnchantmentCategory category, EquipmentSlot... slots) {
-            super(rarity, category, slots);
+        protected SmashEnchantment(Rarity rarity, EnchantmentCategory category, EquipmentSlot[] slotTypes) {
+            super(rarity, category, slotTypes);
         }
-        
+
         @Override
         public int getMaxLevel() { return 5; }
     }
 
     public static class SoilBreakerEnchantment extends Enchantment {
-        protected SoilBreakerEnchantment(Rarity rarity, EnchantmentCategory category, EquipmentSlot... slots) {
-            super(rarity, category, slots);
+        protected SoilBreakerEnchantment(Rarity rarity, EnchantmentCategory category, EquipmentSlot[] slotTypes) {
+            super(rarity, category, slotTypes);
         }
-        
+
         @Override
         public int getMaxLevel() { return 1; }
     }

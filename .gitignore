@@ -1,46 +1,40 @@
-# Gradle
+# gradle
+
 .gradle/
 build/
 out/
-gradle.properties
+classes/
 
-# Eclipse
-.classpath
-.project
-.settings/
-bin/
+# eclipse
 
-# IntelliJ IDEA
+*.launch
+
+# idea
+
 .idea/
 *.iml
-*.iws
 *.ipr
-*.krt
-*.kotlinc
+*.iws
 
-# VS Code
+# vscode
+
+.settings/
 .vscode/
+bin/
+.classpath
+.project
 
-# Mac
-.DS_Store
+# macos
 
-# Logs
-logs/
-*.log
-crash-reports/
-debug.log
-debug.log.gz
-latest.log
+*.DS_Store
 
-# Run directories
+# fabric
+
 run/
-runs/
-run-client/
-run-server/
-run-data/
-run-gametest/
 
-# User specific
-authlib/
-usercache.json
-usernamecache.json
+# java
+
+hs_err_*.log
+replay_*.log
+*.hprof
+*.jfr

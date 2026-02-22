@@ -1,0 +1,39 @@
+{
+	"schemaVersion": 1,
+	"id": "easy_hammers",
+	"version": "${version}",
+	"name": "Easy Hammers",
+	"description": "Adds pickaxe-style tools that effortlessly break a 3x3 area.",
+	"authors": [
+		"Yigit Guven"
+	],
+	"contact": {
+		"homepage": "https://github.com/yigit-guven/easy-hammers",
+		"sources": "https://github.com/yigit-guven/easy-hammers",
+		"issues": "https://github.com/yigit-guven/easy-hammers/issues"
+	},
+	"license": "GPL-3.0",
+	"icon": "assets/easy_hammers/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"net.easyhammers.EasyHammers"
+		],
+		"client": [
+			"net.easyhammers.EasyHammersClient"
+		]
+	},
+	"mixins": [
+		"easy_hammers.mixins.json",
+		{
+			"config": "easy_hammers.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.18.4",
+		"minecraft": "~1.20.1",
+		"java": ">=17",
+		"fabric-api": "*"
+	}
+}
