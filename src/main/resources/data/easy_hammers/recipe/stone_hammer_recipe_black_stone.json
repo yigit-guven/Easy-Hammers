@@ -8,8 +8,12 @@
     " b "
   ],
   "key": {
-    "a": "minecraft:blackstone",
-    "b": "minecraft:stick"
+    "a": {
+      "item": "minecraft:blackstone"
+    },
+    "b": {
+      "item": "minecraft:stick"
+    }
   },
   "result": {
     "id": "easy_hammers:stone_hammer",

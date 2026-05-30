@@ -8,9 +8,6 @@
 
 **Easy Hammers** enhances your Minecraft mining experience by adding a collection of powerful hammers that mine a **3x3 area** at once. Say goodbye to tedious strip mining and hello to efficient excavation!
 
-> [!NOTE]
-> **Version 7.0.1+** is now available for **Minecraft 1.21.1** on NeoForge!
-
 ---
 
 ## 🔗 Links
@@ -53,7 +50,7 @@ Craft a hammer using the standard pattern (similar to a pickaxe but "heavier"):
 ```
 M M M
 M S M
-  S
+    S  
 ```
 *(M = Material, S = Stick)*
 

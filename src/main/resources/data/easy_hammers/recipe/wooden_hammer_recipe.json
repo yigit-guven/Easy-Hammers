@@ -8,8 +8,12 @@
     " b "
   ],
   "key": {
-    "a": "#minecraft:planks",
-    "b": "minecraft:stick"
+    "a": {
+      "tag": "minecraft:planks"
+    },
+    "b": {
+      "item": "minecraft:stick"
+    }
   },
   "result": {
     "id": "easy_hammers:wooden_hammer",
