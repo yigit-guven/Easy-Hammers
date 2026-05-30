@@ -50,7 +50,7 @@ Craft a hammer using the standard pattern (similar to a pickaxe but "heavier"):
 ```
 M M M
 M S M
-    S  
+  S  
 ```
 *(M = Material, S = Stick)*
 
