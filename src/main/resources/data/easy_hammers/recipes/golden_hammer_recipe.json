@@ -8,11 +8,15 @@
     " b "
   ],
   "key": {
-    "a": "minecraft:gold_ingot",
-    "b": "minecraft:stick"
+    "a": {
+      "item": "minecraft:gold_ingot"
+    },
+    "b": {
+      "item": "minecraft:stick"
+    }
   },
   "result": {
-    "id": "easy_hammers:golden_hammer",
-    "count": 1
+    "count": 1,
+    "item": "easy_hammers:golden_hammer"
   }
 }

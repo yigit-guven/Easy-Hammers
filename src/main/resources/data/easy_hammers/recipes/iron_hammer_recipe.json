@@ -8,11 +8,15 @@
     " b "
   ],
   "key": {
-    "a": "minecraft:iron_ingot",
-    "b": "minecraft:stick"
+    "a": {
+      "item": "minecraft:iron_ingot"
+    },
+    "b": {
+      "item": "minecraft:stick"
+    }
   },
   "result": {
-    "id": "easy_hammers:iron_hammer",
-    "count": 1
+    "count": 1,
+    "item": "easy_hammers:iron_hammer"
   }
 }

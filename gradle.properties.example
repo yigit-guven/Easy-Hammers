@@ -1,5 +1,0 @@
-# Copy this file to gradle.properties and customize if needed
-org.gradle.jvmargs=-Xmx3G -Dfile.encoding=UTF-8
-
-# specific path to java 21 if not in path
-# org.gradle.java.home=<path_to_java_21>

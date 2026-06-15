@@ -8,11 +8,15 @@
     " b "
   ],
   "key": {
-    "a": "minecraft:diamond",
-    "b": "minecraft:stick"
+    "a": {
+      "item": "minecraft:diamond"
+    },
+    "b": {
+      "item": "minecraft:stick"
+    }
   },
   "result": {
-    "id": "easy_hammers:diamond_hammer",
-    "count": 1
+    "count": 1,
+    "item": "easy_hammers:diamond_hammer"
   }
 }
